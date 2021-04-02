@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}"/>
+    <script src="https://kit.fontawesome.com/13efd7af0e.js" crossorigin="anonymous"></script>
+    <title>Galeria por Mecanico</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+</head>
+<body>
+        
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand"><i class="fas fa-car-crash"></i> Taller Mecanico Rayo Makween</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="col-md-3"> <a class="btn btn-lg "href="/infoCategorias/"> Informacion de las Categorias </a></div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/index/">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login/">Ingreso <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/registro/">Registro</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/subirImagen/">Publicar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout/">Cerrar sesión</a>
+                </li> 
+        </div>
+    </nav> 
+    <form method="GET">
+        {{imagenes_filtro.form.as_p}}
+        <input type="submit" value="Filtrar">
+    </form>
+    <div class="album py-5 bg-light">
+      <div class="container">
+          <div class="row">
+              {% for i in imagenes_filtro.qs %}
+              <!--Card para datos de imagen-->
+              <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm">
+                    <img src="/static/img/{{i.nombreImagen}}" alt="auto" height="250px" width="347px" >
+                      <div class="card-body">
+                          <div class="d-flex justify-content-between align-items-center">
+                              <div class="btn-group">
+                                  <a href="verImagen/{{i.idImagen}}" class="btn btn-sm btn-outline-secondary">Ver</a>
+                                  <a href="/modificarImagen/{{i.idImagen}}" class="btn btn-sm btn-outline-secondary">Editar</a>
+                                  <a href="/eliminarImagen/{{i.idImagen}}" class="btn btn-sm btn-outline-secondary">Eliminar</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!--FIN Card para datos de imagen-->
+              {% endfor %}
+              
+          </div>
+      </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">CopyRight <i class="fa fa-copyright"></i>  2020.</span>
+      <span class="text-muted al_der">
+        <i class="fa fa-facebook" ></i>
+        <i class="fa fa-twitter" ></i>
+        <i class="fa fa-instagram" ></i>
+        <i class="fa fa-pinterest" ></i>
+      </span>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
